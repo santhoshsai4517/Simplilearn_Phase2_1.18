@@ -1,0 +1,87 @@
+import java.util.Scanner;
+
+class Calculator {
+    private double num1;
+    private double num2;
+
+    public void start() {
+        Scanner scanner = new Scanner(System.in);
+    	while(true) { //Looping until user exits
+
+	        //Asking user for two numbers
+	        System.out.println("/nArithmetic Calculator");
+	        System.out.println("---------------------");
+	        
+	        //Asking user for operation to be performed
+	        System.out.println("Select an operation:");
+	        System.out.println("1. Addition (+)");
+	        System.out.println("2. Subtraction (-)");
+	        System.out.println("3. Multiplication (*)");
+	        System.out.println("4. Division (/)");
+	        System.out.println("5. Exit calculator");
+	        System.out.print("Enter your choice (1-5): ");
+	        int choice = scanner.nextInt();
+	        
+	        if(choice == 5) { //Exiting application and closing scanner
+            	scanner.close();
+            	return;
+	        }
+	        
+	        System.out.print("Enter the first number: ");
+	        num1 = scanner.nextDouble();
+	
+	        System.out.print("Enter the second number: ");
+	        num2 = scanner.nextDouble();
+
+	
+	        double result;
+	        boolean isValidOperation = true;
+	
+	        switch (choice) {
+	            case 1:
+	                result = add();
+	                break;
+	            case 2:
+	                result = subtract();
+	                break;
+	            case 3:
+	                result = multiply();
+	                break;
+	            case 4:
+	                result = divide();
+	                break;
+	            default:
+	                System.out.println("Invalid choice!");
+	                isValidOperation = false;
+	                result = 0;
+	        }
+	
+	        if (isValidOperation) {
+	            System.out.println("/nResult: " + result);
+	        }
+	
+//	        scanner.close();
+	    }
+    }
+
+    private double add() {
+        return num1 + num2;
+    }
+
+    private double subtract() {
+        return num1 - num2;
+    }
+
+    private double multiply() {
+        return num1 * num2;
+    }
+
+    private double divide() {
+        if (num2 != 0) {
+            return num1 / num2;
+        } else {
+            System.out.println("Error: Division by zero is not allowed!");
+            return 0;
+        }
+    }
+}
